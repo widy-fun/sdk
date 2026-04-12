@@ -15,6 +15,12 @@
     "url": "git+https://github.com/widy-fun/sdk.git"
   },
   "homepage": "https://widy.fun",
+  "keywords": [
+    "obs",
+    "twitch",
+    "youtube",
+    "donation"
+  ],
   "scripts": {
     "build": "tsc",
     "prepublishOnly": "npm run build"
