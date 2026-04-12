@@ -1,15 +1,20 @@
 {
   "name": "@widy/sdk",
   "version": "1.0.3",
-  "description": "",
+  "description": "A TypeScript SDK for Widy widget integrations.",
   "license": "ISC",
-  "author": "",
+  "author": "ik1s3v",
   "type": "module",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
     "dist"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/widy-fun/sdk.git"
+  },
+  "homepage": "https://widy.fun",
   "scripts": {
     "build": "tsc",
     "prepublishOnly": "npm run build"
