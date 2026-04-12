@@ -1,0 +1,21 @@
+{
+  "name": "@widy/sdk",
+  "version": "1.0.3",
+  "description": "",
+  "license": "ISC",
+  "author": "",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "prepublishOnly": "npm run build"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.4.9",
+    "typescript": "^6.0.2"
+  }
+}
