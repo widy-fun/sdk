@@ -479,4 +479,5 @@ export interface IManifest {
 	description: string;
 	repository: string;
 	scopes: string[];
+	connect_src: string[];
 }
