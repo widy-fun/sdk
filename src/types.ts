@@ -399,17 +399,16 @@ export interface IEdgeTtsSettings {
 	gender: Gender;
 }
 
-export type WidgetAction =
+export type WidgetQuery =
 	| "widgets:messages.read"
 	| "widgets:goals.read"
 	| "widgets:auc-fighter:settings.read"
 	| "widgets:settings.read"
 	| "widgets:alerts.read"
 	| "widgets:storage.read"
-	| "widgets:storage.write"
 	| "widgets:media:settings.read";
 
-export type WidgetSend =
+export type WidgetMutation =
 	| "widgets:auc-fighter:match-playing.send"
 	| "widgets:auc-fighter:match-winner.send"
 	| "widgets:auc-fighter:match-paused.send"
@@ -423,7 +422,8 @@ export type WidgetSend =
 	| "widgets:media:error.send"
 	| "widgets:media:replay.send"
 	| "widgets:alert:replay.send"
-	| "widgets:alert:skip.send";
+	| "widgets:alert:skip.send"
+	| "widgets:storage.write";
 
 export type WidgetSubscription =
 	| "widgets:messages.subscription"
@@ -450,7 +450,7 @@ export type WidgetSubscription =
 	| "widgets:media:play.subscription"
 	| "widgets:alert:played.subscription";
 
-export type WidgetScopes = WidgetAction | WidgetSubscription | WidgetSend;
+export type WidgetScopes = WidgetQuery | WidgetSubscription | WidgetMutation;
 
 export interface IWidgetRequest<T = unknown> {
 	id: string;

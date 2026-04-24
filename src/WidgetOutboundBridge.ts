@@ -1,7 +1,7 @@
 import type {
 	IWidgetResponse,
-	WidgetAction,
-	WidgetSend,
+	WidgetMutation,
+	WidgetQuery,
 	WidgetSubscription,
 } from "./types";
 
@@ -34,7 +34,7 @@ export default class WidgetOutboundBridge {
 		}
 	};
 
-	action<P, R = unknown>(scope: WidgetAction, payload?: P): Promise<R> {
+	action<P, R = unknown>(scope: WidgetQuery, payload?: P): Promise<R> {
 		return new Promise((resolve, reject) => {
 			const id = crypto.randomUUID();
 			this.pendingRequests.set(id, { resolve, reject });
@@ -49,7 +49,7 @@ export default class WidgetOutboundBridge {
 		});
 	}
 
-	send<P>(scope: WidgetSend, payload?: P): void {
+	send<P>(scope: WidgetMutation, payload?: P): void {
 		const id = crypto.randomUUID();
 		window.parent.postMessage({ id, scope, payload }, "*");
 	}
