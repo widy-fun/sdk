@@ -1,6 +1,6 @@
 {
   "name": "@widy/sdk",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "A TypeScript SDK for Widy widget integrations.",
   "license": "ISC",
   "author": "ik1s3v",
@@ -27,6 +27,12 @@
   },
   "devDependencies": {
     "@biomejs/biome": "2.4.9",
+    "@types/node": "^25.6.0",
+    "@types/ws": "^8.18.1",
     "typescript": "^6.0.2"
+  },
+  "dependencies": {
+    "@rsbuild/core": "^2.0.0",
+    "ws": "^8.20.0"
   }
 }
