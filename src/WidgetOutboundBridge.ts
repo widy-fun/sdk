@@ -34,7 +34,10 @@ export default class WidgetOutboundBridge {
 		}
 	};
 
-	action<P, R = unknown>(scope: WidgetQuery, payload?: P): Promise<R> {
+	action<P, R = unknown>(
+		scope: WidgetQuery | WidgetMutation,
+		payload?: P,
+	): Promise<R> {
 		return new Promise((resolve, reject) => {
 			const id = crypto.randomUUID();
 			this.pendingRequests.set(id, { resolve, reject });
@@ -47,11 +50,6 @@ export default class WidgetOutboundBridge {
 				}
 			}, WidgetOutboundBridge.REQUEST_TIMEOUT_MS);
 		});
-	}
-
-	send<P>(scope: WidgetMutation, payload?: P): void {
-		const id = crypto.randomUUID();
-		window.parent.postMessage({ id, scope, payload }, "*");
 	}
 
 	subscribe<T>(
