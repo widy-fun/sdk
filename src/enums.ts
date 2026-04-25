@@ -52,6 +52,8 @@ export enum AppEvent {
 	Goal = "Goal",
 	TwitchRewardRedemptionAdd = "TwitchRewardRedemptionAdd",
 	CreateDonationAccount = "CreateDonationAccount",
+	WidgetViewStorage = "WidgetViewStorage",
+	WidgetControlStorage = "WidgetControlStorage",
 }
 export enum StreamElementsEvent {
 	Connect = "Connect",

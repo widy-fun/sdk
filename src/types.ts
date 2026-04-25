@@ -405,7 +405,8 @@ export type WidgetQuery =
 	| "widgets:auc-fighter:settings.read"
 	| "widgets:settings.read"
 	| "widgets:alerts.read"
-	| "widgets:storage.read"
+	| "widgets:view:storage.read"
+	| "widgets:control:storage.read"
 	| "widgets:media:settings.read";
 
 export type WidgetMutation =
@@ -423,7 +424,8 @@ export type WidgetMutation =
 	| "widgets:media:replay.send"
 	| "widgets:alert:replay.send"
 	| "widgets:alert:skip.send"
-	| "widgets:storage.write";
+	| "widgets:view:storage.write"
+	| "widgets:control:storage.write";
 
 export type WidgetSubscription =
 	| "widgets:messages.subscription"
@@ -448,7 +450,9 @@ export type WidgetSubscription =
 	| "widgets:media:error.subscription"
 	| "widgets:media:pause.subscription"
 	| "widgets:media:play.subscription"
-	| "widgets:alert:played.subscription";
+	| "widgets:alert:played.subscription"
+	| "widgets:view:storage.subscription"
+	| "widgets:control:storage.subscription";
 
 export type WidgetScopes = WidgetQuery | WidgetSubscription | WidgetMutation;
 
@@ -467,7 +471,8 @@ export interface IWidget {
 	id: string;
 	manifest: IManifest;
 	dev_path?: string;
-	storage?: string;
+	view_storage?: string;
+	control_storage?: string;
 }
 
 export interface IManifest {
