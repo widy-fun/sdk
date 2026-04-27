@@ -463,8 +463,8 @@ export interface IWidgetRequest<T = unknown> {
 }
 export interface IWidgetResponse<T = unknown> {
 	id: string;
-	result: T;
-	error?: string;
+	data?: T;
+	error?: unknown;
 }
 
 export interface IWidget {
