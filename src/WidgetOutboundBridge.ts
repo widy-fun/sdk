@@ -33,9 +33,9 @@ export default class WidgetOutboundBridge {
 		}
 	};
 
-	action<P, R = unknown>(
+	action<A, R = unknown>(
 		scope: WidgetQuery | WidgetMutation,
-		arg?: P,
+		arg?: A,
 	): Promise<R> {
 		return new Promise((resolve, reject) => {
 			const id = crypto.randomUUID();
