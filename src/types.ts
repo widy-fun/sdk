@@ -459,7 +459,7 @@ export type WidgetScopes = WidgetQuery | WidgetSubscription | WidgetMutation;
 export interface IWidgetRequest<T = unknown> {
 	id: string;
 	scope: WidgetScopes;
-	payload?: T;
+	arg?: T;
 }
 export interface IWidgetResponse<T = unknown> {
 	id: string;
