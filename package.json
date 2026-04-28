@@ -1,6 +1,6 @@
 {
   "name": "@widy/sdk",
-  "version": "1.0.13",
+  "version": "1.0.14",
   "description": "A TypeScript SDK for Widy widget integrations.",
   "license": "ISC",
   "author": "ik1s3v",
