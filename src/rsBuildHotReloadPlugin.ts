@@ -11,12 +11,13 @@ export function rsBuildHotReloadPlugin({
 	entryFilePath: string;
 }): RsbuildPlugin {
 	const isWatch = process.argv.includes("--watch");
-	const ws = new WebSocketServer({ port });
 
 	return {
 		name: "hot-reload-widget",
 		setup(api) {
 			if (!isWatch) return;
+
+			const ws = new WebSocketServer({ port });
 
 			api.transform({}, ({ code, resourcePath }) => {
 				if (resourcePath === entryFilePath) {
