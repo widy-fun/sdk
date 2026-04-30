@@ -140,6 +140,7 @@ export interface ISettings {
 	currency: Currency;
 	tts_type: TtsType;
 	tts_settings?: IEdgeTtsSettings;
+	widget_token: string;
 }
 
 export interface IAuctionSettings {

@@ -13,6 +13,7 @@ npm install @widy/sdk
 ## Package Exports
 
 - `WidgetOutboundBridge` - the main bridge class for widget outbound communication
+- `rsBuildHotReloadPlugin` - a development plugin for automatic widget reloads during rsbuild watch builds
 - `enums` - shared enum values used across the SDK
 - `types` - rich TypeScript interfaces for messages, events, alerts, donations, subscriptions, goals, settings, and more
 
@@ -39,6 +40,31 @@ bridge.destroy();
 ```
 
 > `WidgetOutboundBridge` is intended for use inside a browser widget iframe. It communicates with `window.parent` using `postMessage` and listens for replies via `message` events.
+
+## Development Hot Reload
+
+This package also exports `rsBuildHotReloadPlugin`, a helper plugin for `rsbuild` watch mode. It injects a small client-side script into the configured entry file and sends a reload signal over WebSocket after every build.
+
+```ts
+import { rsBuildHotReloadPlugin } from "@widy/sdk";
+
+export default {
+  plugins: [
+    rsBuildHotReloadPlugin({
+      port: 4777,
+      delay: 400,
+      entryFilePath: "src/index.ts",
+    }),
+  ],
+};
+```
+
+Options:
+- `port?: number` — WebSocket port to listen on (default: `4777`)
+- `delay?: number` — milliseconds to wait before reloading the browser after a rebuild (default: `400`)
+- `entryFilePath: string` — path to the entry file that should receive the hot reload snippet
+
+When `rsbuild` runs with `--watch`, the plugin starts a WebSocket server and reloads the widget in the browser automatically after rebuilds.
 
 ## `WidgetOutboundBridge` API
 
