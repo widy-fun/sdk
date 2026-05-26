@@ -54,6 +54,7 @@ export enum AppEvent {
 	CreateDonationAccount = "CreateDonationAccount",
 	WidgetViewStorage = "WidgetViewStorage",
 	WidgetControlStorage = "WidgetControlStorage",
+	Nsfw = "Nsfw",
 }
 export enum StreamElementsEvent {
 	Connect = "Connect",
