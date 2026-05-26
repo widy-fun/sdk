@@ -5,10 +5,12 @@ export function rsBuildHotReloadPlugin({
 	port = 4777,
 	delay = 400,
 	entryFilePath,
+	isExtension = false,
 }: {
 	port?: number;
 	delay?: number;
 	entryFilePath: string;
+	isExtension?: boolean;
 }): RsbuildPlugin {
 	const isWatch = process.argv.includes("--watch");
 
@@ -21,6 +23,9 @@ export function rsBuildHotReloadPlugin({
 
 			api.transform({}, ({ code, resourcePath }) => {
 				if (resourcePath === entryFilePath) {
+					const runtimeReload = isExtension
+						? "chrome.runtime.reload()"
+						: "window.location.reload()";
 					const hotReloadSnippet = `
 						(function() {
 						function connect() {
@@ -28,7 +33,7 @@ export function rsBuildHotReloadPlugin({
 
 							ws.addEventListener('message', (event) => {
 							if (event.data === 'hot-reload-widget') {
-								setTimeout(() => window.location.reload(), ${delay});
+								setTimeout(() => ${runtimeReload}, ${delay});
 							}
 							});
 

@@ -487,3 +487,8 @@ export interface IManifest {
 	scopes: string[];
 	connect_src: string[];
 }
+
+export interface IWindowInfo {
+	title: string;
+	id: number;
+}
