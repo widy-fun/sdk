@@ -54,7 +54,8 @@ export enum AppEvent {
 	CreateDonationAccount = "CreateDonationAccount",
 	WidgetViewStorage = "WidgetViewStorage",
 	WidgetControlStorage = "WidgetControlStorage",
-	Nsfw = "Nsfw",
+	NsfwDetection = "NsfwDetection",
+	NsfwSettings = "NsfwSettings",
 }
 export enum StreamElementsEvent {
 	Connect = "Connect",
@@ -134,6 +135,7 @@ export enum ServiceType {
 	StreamLabs = "StreamLabs",
 	Donatello = "Donatello",
 	Donatik = "Donatik",
+	DonatePay = "DonatePay",
 }
 
 export enum StreamElementsEventType {
@@ -165,4 +167,12 @@ export enum TtsType {
 export enum Gender {
 	Male = "Male",
 	Female = "Edge",
+}
+
+export enum NsfwLabel {
+	anus = "anus",
+	make_love = "make_love",
+	nipple = "nipple",
+	penis = "penis",
+	vagina = "vagina",
 }

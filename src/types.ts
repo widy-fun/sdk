@@ -8,6 +8,7 @@ import type {
 	GoalType,
 	MediaType,
 	MessageType,
+	NsfwLabel,
 	ServiceType,
 	StreamElementsEventType,
 	TtsType,
@@ -242,9 +243,12 @@ export interface IImportedLot {
 	investors: [];
 }
 export interface IEventsService extends ISubscriptions {
+	connected: boolean;
 	connect: () => void;
 	disconnect: () => void;
 	send: <T>(message: IEventMessage<T>) => void;
+	addStatusListener: (listener: (connected: boolean) => void) => void;
+	removeStatusListener: (listener: (connected: boolean) => void) => void;
 }
 
 export interface IGoal {
@@ -285,6 +289,11 @@ export interface IStreamElementsAuth {
 export interface IDonationAlertsAuth {
 	token: string;
 }
+
+export interface IDonatePayAuth {
+	access_token: string;
+}
+
 export interface IStreamLabsAuth {
 	jwt: string;
 }
@@ -491,4 +500,24 @@ export interface IManifest {
 export interface IWindowInfo {
 	title: string;
 	id: number;
+	selected: boolean;
+}
+
+export interface INsfwSettings {
+	id: number;
+	labels_confidence: ILabelsConfidence;
+	blur_timeout_duration: number;
+}
+
+export interface ILabelsConfidence {
+	anus: number;
+	make_love: number;
+	nipple: number;
+	penis: number;
+	vagina: number;
+}
+
+export interface INsfwDetection {
+	label: NsfwLabel;
+	confidence: number;
 }
