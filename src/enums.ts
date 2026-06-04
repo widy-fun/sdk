@@ -136,6 +136,7 @@ export enum ServiceType {
 	Donatello = "Donatello",
 	Donatik = "Donatik",
 	DonatePay = "DonatePay",
+	Destream = "Destream",
 }
 
 export enum StreamElementsEventType {

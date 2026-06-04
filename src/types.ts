@@ -286,8 +286,13 @@ export interface IService<T = undefined, S = undefined> {
 export interface IStreamElementsAuth {
 	jwt_token: string;
 }
+
 export interface IDonationAlertsAuth {
 	token: string;
+}
+
+export interface IDestreamAuth {
+	overlayid: string;
 }
 
 export interface IDonatePayAuth {
