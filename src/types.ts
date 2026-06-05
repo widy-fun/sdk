@@ -295,6 +295,10 @@ export interface IDestreamAuth {
 	overlayid: string;
 }
 
+export interface ITributeAuth {
+	api_key: string;
+}
+
 export interface IDonatePayAuth {
 	access_token: string;
 }
