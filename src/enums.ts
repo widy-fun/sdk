@@ -126,7 +126,6 @@ export enum GoalProgressLayout {
 	CurrentAmountRemainingAmountPercent = "CurrentAmountRemainingAmountPercent",
 }
 export enum ServiceType {
-	TributeBot = "TributeBot",
 	Streamelements = "Streamelements",
 	Twitch = "Twitch",
 	WidySol = "WidySol",
