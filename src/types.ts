@@ -1,4 +1,5 @@
 import type {
+	AlertVariant,
 	AlertVariationConditions,
 	AppEvent,
 	Currency,
@@ -9,6 +10,8 @@ import type {
 	MediaType,
 	MessageType,
 	NsfwLabel,
+	Platform,
+	RewardType,
 	ServiceType,
 	StreamElementsEventType,
 	TtsType,
@@ -23,6 +26,7 @@ export interface IClientMessage {
 	follow?: IFollow;
 	subscription?: ISubscription;
 	raid?: IRaid;
+	redemption?: IRedemption;
 	created_at: number;
 }
 export interface IDonation {
@@ -88,6 +92,7 @@ export interface IMessagesFilter {
 	exclude_subscriptions: boolean;
 	exclude_follows: boolean;
 	exclude_raids: boolean;
+	exclude_redemptions: boolean;
 }
 
 export interface IEventMessage<T> {
@@ -107,12 +112,16 @@ export interface ISubscriber<T = any> {
 export type EventCallback<T> = (data: T) => void;
 export interface IAlert {
 	id: string;
-	audio: string;
+	audio?: string;
 	audio_volume: number;
 	view_type: ViewType;
 	type: MessageType;
-	image: string;
-	show_image: boolean;
+	image?: string;
+	video?: string;
+	video_volume: number;
+	delay: number;
+	duration: number;
+	alert_variant: AlertVariant;
 	group_id: string;
 	name: string;
 	variation_conditions: AlertVariationConditions;
@@ -129,6 +138,8 @@ export interface ITextStyle {
 	underline: boolean;
 	letter_spacing: number;
 	word_spacing: number;
+	animation: TextAnimation;
+	animation_variant: TextAnimationVariant;
 }
 export interface ISettings {
 	id: number;
@@ -342,63 +353,11 @@ export interface ITwitchDeviceCodeResponse {
 	user_code: string;
 	verification_uri: string;
 }
-export interface ITwitchReward {
-	title: string;
-	cost: number;
-}
-export interface ITwitchEventPayload<T> {
-	subscription: ITwitchSubscription;
-	event: T;
-}
-export interface ITwitchRedemptionEvent {
-	user_id: string;
-	id: string;
-	user_login: string;
-	user_name: string;
-	user_input: string;
-	status: string;
-	broadcaster_user_id: string;
-	broadcaster_user_login: string;
-	broadcaster_user_name: string;
-	followed_at: string;
-	redeemed_at: string;
-	reward: ITwitchReward;
-}
-export interface ITwitchReward {
-	id: string;
-	title: string;
-	prompt: string;
-	cost: number;
-}
-export interface ITwitchSubscription {
-	id: string;
-	status: string;
-	type: string;
-	version: string;
-	cost: number;
-	condition: { broadcaster_user_id: string; user_id?: string };
-	transport: { method: string; session_id: string };
-	created_at: string;
-}
-
-export interface ITwitchIntegrationSettings {
-	points_currency_ratio: number;
-	rewards_name: string;
-	rewards: ITwitchIntegrationReward[];
-}
 
 export interface IWidyAuth {
 	donation_account_name: string;
 	donation_account_address: string;
 	user: string;
-}
-
-export interface ITwitchIntegrationReward {
-	id: string;
-	reward_id: string | null;
-	subscription_id: string | null;
-	cost: number;
-	color: string;
 }
 
 export interface IDeepLinkQueryParams {
@@ -529,4 +488,57 @@ export interface ILabelsConfidence {
 export interface INsfwDetection {
 	label: NsfwLabel;
 	confidence: number;
+}
+
+export interface IReward {
+	id: string;
+	platform: Platform;
+	type: RewardType;
+	external_id?: string;
+	title: string;
+	description?: string;
+	cost: number;
+	background_color: string;
+	is_user_input_required: boolean;
+	image?: string;
+	audio?: string;
+	points_currency_ratio: number;
+	video?: string;
+	alert_variant: AlertVariant;
+	audio_volume: number;
+	video_volume: number;
+	duration: number;
+	delay: number;
+	is_enabled: boolean;
+	is_max_per_stream_enabled?: boolean;
+	max_per_stream?: number;
+	is_max_per_user_per_stream_enabled?: boolean;
+	max_per_user_per_stream?: number;
+	is_global_cooldown_enabled?: boolean;
+	global_cooldown_seconds?: number;
+	should_redemptions_skip_request_queue?: boolean;
+}
+
+export interface IRedemption {
+	id: string;
+	user_id: string;
+	user_name: string;
+	user_input?: string;
+	reward_id: string;
+	external_id: string;
+	title: string;
+	description?: string;
+	cost: number;
+	platform: Platform;
+	type: RewardType;
+	points_currency_ratio: number;
+	media?: IMedia;
+	image?: string;
+	audio?: string;
+	video?: string;
+	alert_variant: AlertVariant;
+	audio_volume: number;
+	video_volume: number;
+	duration: number;
+	delay: number;
 }

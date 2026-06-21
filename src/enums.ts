@@ -19,7 +19,7 @@ export enum Language {
 
 export enum AppEvent {
 	Message = "Message",
-	MediaMessage = "MediaMessage",
+	Media = "Media",
 	SkipAlert = "SkipAlert",
 	ReplayAlert = "ReplayAlert",
 	AlertPlaying = "AlertPlaying",
@@ -50,12 +50,14 @@ export enum AppEvent {
 	AucFighterSettings = "AucFighterSettings",
 	TestAlert = "TestAlert",
 	Goal = "Goal",
-	TwitchRewardRedemptionAdd = "TwitchRewardRedemptionAdd",
 	CreateDonationAccount = "CreateDonationAccount",
 	WidgetViewStorage = "WidgetViewStorage",
 	WidgetControlStorage = "WidgetControlStorage",
 	NsfwDetection = "NsfwDetection",
 	NsfwSettings = "NsfwSettings",
+	Alert = "Alert",
+	Donation = "Donation",
+	Redemption = "Redemption",
 }
 export enum StreamElementsEvent {
 	Connect = "Connect",
@@ -139,6 +141,10 @@ export enum ServiceType {
 	Tribute = "Tribute",
 }
 
+export enum Platform {
+	Twitch = "Twitch",
+}
+
 export enum StreamElementsEventType {
 	tip = "tip",
 }
@@ -148,6 +154,7 @@ export enum MessageType {
 	Subscription = "Subscription",
 	Follow = "Follow",
 	Raid = "Raid",
+	Redemption = "Redemption",
 }
 export enum GoalType {
 	Donation = "Donation",
@@ -176,4 +183,25 @@ export enum NsfwLabel {
 	nipple = "nipple",
 	penis = "penis",
 	vagina = "vagina",
+}
+
+export enum RewardType {
+	Media = "Media",
+	Auction = "Auction",
+	Alert = "Alert",
+}
+
+export enum AlertVariant {
+	ImageAndAudio = "ImageAndAudio",
+	Image = "Image",
+	Audio = "Audio",
+	Video = "Video",
+}
+
+export enum TextAnimation {
+	No = "No",
+}
+
+export enum TextAnimationVariant {
+	AllText = "AllText",
 }
