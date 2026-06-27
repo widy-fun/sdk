@@ -14,6 +14,8 @@ import type {
 	RewardType,
 	ServiceType,
 	StreamElementsEventType,
+	TextAnimation,
+	TextAnimationVariant,
 	TtsType,
 	ViewType,
 	WidyNetwork,

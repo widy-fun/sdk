@@ -139,10 +139,12 @@ export enum ServiceType {
 	DonatePay = "DonatePay",
 	Destream = "Destream",
 	Tribute = "Tribute",
+	Kick = "Kick",
 }
 
 export enum Platform {
 	Twitch = "Twitch",
+	Kick = "Kick",
 }
 
 export enum StreamElementsEventType {
@@ -160,6 +162,7 @@ export enum GoalType {
 	Donation = "Donation",
 	TwitchSubscription = "TwitchSubscription",
 	TwitchFollow = "TwitchFollow",
+	KickSubscription = "KickSubscription",
 }
 
 export enum WidyNetwork {
