@@ -58,6 +58,8 @@ export enum AppEvent {
 	Alert = "Alert",
 	Donation = "Donation",
 	Redemption = "Redemption",
+	ChatMessage = "ChatMessage",
+	ChatMessageDelete = "ChatMessageDelete",
 }
 export enum StreamElementsEvent {
 	Connect = "Connect",
