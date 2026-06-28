@@ -432,7 +432,13 @@ export type WidgetSubscription =
 	| "widgets:media:play.subscription"
 	| "widgets:alert:played.subscription"
 	| "widgets:view:storage.subscription"
-	| "widgets:control:storage.subscription";
+	| "widgets:control:storage.subscription"
+	| "widgets:donation.subscription"
+	| "widgets:redemption.subscription"
+	| "widgets:chat-message.subscription"
+	| "widgets:chat-message-delete.subscription"
+	| "widgets:media.subscription"
+	| "widgets:alert.subscription";
 
 export type WidgetScopes = WidgetQuery | WidgetSubscription | WidgetMutation;
 
