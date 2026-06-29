@@ -550,3 +550,195 @@ export interface IRedemption {
 	duration: number;
 	delay: number;
 }
+
+export type FragmentKind =
+	| { kind: "Text" }
+	| {
+			kind: "Emote";
+			id: string;
+			emote_set_id: string | null;
+			owner_id: string | null;
+			formats: string[];
+	  }
+	| {
+			kind: "Mention";
+			user_id: string;
+			username: string;
+			login: string;
+	  }
+	| {
+			kind: "Cheermote";
+			prefix: string;
+			bits: number;
+			tier: number;
+	  };
+
+export type ChatMessageType =
+	| { type: "Text" }
+	| { type: "ChannelPointsHighlighted" }
+	| { type: "ChannelPointsSubOnly" }
+	| { type: "UserIntro" }
+	| { type: "PowerUpMessageEffect" }
+	| { type: "PowerUpGigantifiedEmote" }
+	| {
+			type: "SuperChat";
+			amount_micros: number;
+			currency: string;
+			amount_display: string;
+			tier: number;
+	  }
+	| {
+			type: "SuperSticker";
+			sticker_id: string;
+			alt_text: string;
+			amount_micros: number;
+			currency: string;
+			tier: number;
+	  }
+	| {
+			type: "FanFunding";
+			amount_micros: number;
+			currency: string;
+			amount_display: string;
+	  }
+	| {
+			type: "MemberMilestone";
+			member_month: number;
+			level_name: string;
+	  }
+	| {
+			type: "NewSponsor";
+			level_name: string;
+			is_upgrade: boolean;
+	  }
+	| {
+			type: "MembershipGifting";
+			count: number;
+			level_name: string;
+	  }
+	| {
+			type: "GiftMembershipReceived";
+			level_name: string;
+			gifter_channel_id: string;
+			associated_message_id: string;
+	  }
+	| {
+			type: "GiftEvent";
+			gift_name: string;
+			jewels_amount: number;
+			has_visual_effect: boolean;
+			combo_count: number;
+	  }
+	| {
+			type: "Poll";
+			question: string;
+			options: IPollOption[];
+			status: string;
+	  }
+	| {
+			type: "UserBanned";
+			ban_type: string;
+			duration_seconds: number | null;
+	  }
+	| { type: "Unknown"; value: string };
+
+export interface IPollOption {
+	text: string;
+	tally: string;
+}
+
+export interface IDeletedMessageUser {
+	id: string;
+	username: string;
+	login: string;
+}
+
+export interface IModerationInfo {
+	ai_moderated: boolean;
+	violated_rules: string[];
+}
+
+export interface IUnifiedChatMessageDeleteEvent {
+	platform: Platform;
+	channel_id: string | null;
+	message_id: string;
+	target_user: IDeletedMessageUser | null;
+}
+
+export interface IUnifiedBadge {
+	id: string;
+	set_id: string;
+	label: string | null;
+}
+
+export interface ISenderRoles {
+	is_broadcaster: boolean;
+	is_moderator: boolean;
+	is_subscriber: boolean;
+	is_verified: boolean;
+}
+
+export interface IUnifiedSender {
+	id: string;
+	username: string;
+	login: string;
+	color: string | null;
+	badges: IUnifiedBadge[];
+	avatar_url: string | null;
+	channel_url: string | null;
+	is_verified: boolean | null;
+	roles: ISenderRoles;
+}
+
+export interface IReplyInfo {
+	parent_message_id: string;
+	parent_message_body: string;
+	parent_user_id: string;
+	parent_username: string;
+	thread_message_id: string | null;
+	thread_user_id: string | null;
+}
+
+export interface IChatFragment {
+	kind: FragmentKind;
+	text: string;
+}
+
+export interface IDonationInfo {
+	amount_micros: number;
+	currency: string;
+	amount_display: string;
+	user_comment: string | null;
+	tier: number | null;
+}
+
+export interface IUnifiedContent {
+	text: string;
+	fragments: IChatFragment[];
+	message_type: ChatMessageType;
+	reply: IReplyInfo | null;
+	cheer_bits: number | null;
+	donation: IDonationInfo | null;
+}
+
+export interface IUnifiedMetadata {
+	raw_message_ref: string | null;
+	channel_points_reward_id: string | null;
+	source_channel_id: string | null;
+	source_channel_login: string | null;
+	source_message_id: string | null;
+	is_source_only: boolean | null;
+	live_chat_id: string | null;
+	has_display_content: boolean | null;
+}
+
+export interface IUnifiedChatMessage {
+	id: string;
+	platform: Platform;
+	channel_id: string;
+	channel_name: string;
+	sender: IUnifiedSender;
+	content: IUnifiedContent;
+	metadata: IUnifiedMetadata;
+	created_at: string;
+}
