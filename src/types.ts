@@ -658,7 +658,7 @@ export interface IModerationInfo {
 	violated_rules: string[];
 }
 
-export interface IUnifiedChatMessageDeleteEvent {
+export interface IUnifiedChatMessageDelete {
 	platform: Platform;
 	channel_id: string | null;
 	message_id: string;
