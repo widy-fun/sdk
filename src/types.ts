@@ -675,6 +675,7 @@ export interface IUnifiedBadge {
 	id: string;
 	set_id: string;
 	label: string | null;
+	image_url?: string;
 }
 
 export interface ISenderRoles {
