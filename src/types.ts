@@ -470,7 +470,13 @@ export interface IManifest {
 	description: string;
 	repository: string;
 	scopes: string[];
-	connect_src: string[];
+	csp?: ICsp;
+}
+
+export interface ICsp {
+	connect_src?: string[];
+	img_src?: string[];
+	media_src?: string[];
 }
 
 export interface IWindowInfo {
