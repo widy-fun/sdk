@@ -16,13 +16,17 @@ npm install @widy/sdk
 - `rsBuildHotReloadPlugin` - a development plugin for automatic widget reloads during rsbuild watch builds
 - `enums` - shared enum values used across the SDK
 - `types` - rich TypeScript interfaces for messages, events, alerts, donations, subscriptions, goals, settings, and more
+- `theme` - shared UI theme definitions for widgets
 
 ## Usage
 
 ```ts
-import { WidgetOutboundBridge } from "@widy/sdk";
+import { WidgetOutboundBridge, darkTheme } from "@widy/sdk";
 
 const bridge = new WidgetOutboundBridge();
+
+// Use the shared theme definition in your widget UI styles
+console.log("widget theme", darkTheme.palette.background);
 
 // Send a one-way message to the parent window
 bridge.send<MessageId>("widgets:alert:played.send", id);
