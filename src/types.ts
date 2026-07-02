@@ -683,6 +683,7 @@ export interface ISenderRoles {
 	is_moderator: boolean;
 	is_subscriber: boolean;
 	is_verified: boolean;
+	is_bot: boolean;
 }
 
 export interface IUnifiedSender {
