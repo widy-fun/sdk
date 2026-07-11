@@ -2,6 +2,7 @@ import type {
 	AlertVariant,
 	AlertVariationConditions,
 	AppEvent,
+	CommandSourceType,
 	Currency,
 	Gender,
 	GoalProgressLayout,
@@ -11,12 +12,14 @@ import type {
 	MessageType,
 	NsfwLabel,
 	Platform,
+	PostType,
 	RewardType,
 	ServiceType,
 	StreamElementsEventType,
 	TextAnimation,
 	TextAnimationVariant,
 	TtsType,
+	UserLevel,
 	ViewType,
 	WidyNetwork,
 } from "./enums";
@@ -46,6 +49,7 @@ export interface IDonation {
 	exchanged_amount: number;
 	exchanged_currency: Currency;
 	created_at: number;
+	alert?: IAlert;
 }
 export interface IFollow {
 	id: string;
@@ -56,6 +60,7 @@ export interface IFollow {
 	service: ServiceType;
 	played: boolean;
 	followed_at: number;
+	alert?: IAlert;
 }
 export interface ISubscription {
 	id: string;
@@ -71,6 +76,7 @@ export interface ISubscription {
 	cumulative_total: number;
 	total: number;
 	subscribed_at: number;
+	alert?: IAlert;
 }
 export interface IRaid {
 	id: string;
@@ -82,6 +88,7 @@ export interface IRaid {
 	viewers: number;
 	service: ServiceType;
 	created_at: number;
+	alert?: IAlert;
 }
 
 export interface IPageParm {
@@ -131,6 +138,8 @@ export interface IAlert {
 	amount: number;
 	title_style: ITextStyle;
 	message_style: ITextStyle;
+	reward_id?: string;
+	command_id?: string;
 }
 export interface ITextStyle {
 	font_size: number;
@@ -419,9 +428,8 @@ export type WidgetSubscription =
 	| "widgets:auc-fighter:settings.subscription"
 	| "widgets:alert:replay.subscription"
 	| "widgets:alert:skip.subscription"
-	| "widgets:alert:test.subscription"
 	| "widgets:alert:skip-playing.subscription"
-	| "widgets:alert:alerts.subscription"
+	| "widgets:alert:update.subscription"
 	| "widgets:media:replay.subscription"
 	| "widgets:media:settings.subscription"
 	| "widgets:media:skip.subscription"
@@ -514,15 +522,8 @@ export interface IReward {
 	cost: number;
 	background_color: string;
 	is_user_input_required: boolean;
-	image?: string;
-	audio?: string;
 	points_currency_ratio: number;
-	video?: string;
 	alert_variant: AlertVariant;
-	audio_volume: number;
-	video_volume: number;
-	duration: number;
-	delay: number;
 	is_enabled: boolean;
 	is_max_per_stream_enabled?: boolean;
 	max_per_stream?: number;
@@ -531,6 +532,7 @@ export interface IReward {
 	is_global_cooldown_enabled?: boolean;
 	global_cooldown_seconds?: number;
 	should_redemptions_skip_request_queue?: boolean;
+	alert?: IAlert;
 }
 
 export interface IRedemption {
@@ -547,14 +549,7 @@ export interface IRedemption {
 	type: RewardType;
 	points_currency_ratio: number;
 	media?: IMedia;
-	image?: string;
-	audio?: string;
-	video?: string;
-	alert_variant: AlertVariant;
-	audio_volume: number;
-	video_volume: number;
-	duration: number;
-	delay: number;
+	alert?: IAlert;
 }
 
 export type FragmentKind =
@@ -749,4 +744,34 @@ export interface IUnifiedChatMessage {
 	content: IUnifiedContent;
 	metadata: IUnifiedMetadata;
 	created_at: string;
+}
+
+export interface ICommand {
+	id: string;
+	name: string;
+	description?: string;
+	chat_bot?: IChatBotAction;
+	alert?: IAlert;
+	chat?: IChatSource;
+	timer?: ITimerSource;
+	source_type: CommandSourceType;
+}
+
+export interface IChatSource {
+	trigger: string;
+	platforms: Platform[];
+	user_levels: UserLevel[];
+}
+
+export interface ITimerSource {
+	message: string;
+	interval: number;
+	lines: number;
+	alias?: string;
+	post_type: PostType;
+}
+
+export interface IChatBotAction {
+	message: string;
+	replay: boolean;
 }

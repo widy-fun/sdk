@@ -35,7 +35,7 @@ export enum AppEvent {
 	PlayMedia = "PlayMedia",
 	SkipMedia = "SkipMedia",
 	ReplayMedia = "ReplayMedia",
-	Alerts = "Alerts",
+	UpdateAlert = "UpdateAlert",
 	MakeAudioError = "MakeAudioError",
 	Settings = "Settings",
 	MediaSettings = "MediaSettings",
@@ -48,7 +48,6 @@ export enum AppEvent {
 	UpdateAucFighterMatch = "UpdateAucFighterMatch",
 	CancelAucFighterMatch = "CancelAucFighterMatch",
 	AucFighterSettings = "AucFighterSettings",
-	TestAlert = "TestAlert",
 	Goal = "Goal",
 	CreateDonationAccount = "CreateDonationAccount",
 	WidgetViewStorage = "WidgetViewStorage",
@@ -142,6 +141,8 @@ export enum ServiceType {
 	Destream = "Destream",
 	Tribute = "Tribute",
 	Kick = "Kick",
+	KickBot = "KickBot",
+	TwitchBot = "TwitchBot",
 }
 
 export enum Platform {
@@ -159,6 +160,7 @@ export enum MessageType {
 	Follow = "Follow",
 	Raid = "Raid",
 	Redemption = "Redemption",
+	Command = "Command",
 }
 export enum GoalType {
 	Donation = "Donation",
@@ -209,4 +211,24 @@ export enum TextAnimation {
 
 export enum TextAnimationVariant {
 	AllText = "AllText",
+}
+
+export enum CommandSourceType {
+	Chat = "Chat",
+	Timer = "Timer",
+	None = "None",
+}
+
+export enum UserLevel {
+	Streamer = "Streamer",
+	Moderator = "Moderator",
+	Vip = "Vip",
+	Subscriber = "Subscriber",
+	Follower = "Follower",
+	Anyone = "Anyone",
+}
+
+export enum PostType {
+	Normal = "Normal",
+	Announcement = "Announcement",
 }
