@@ -134,6 +134,9 @@ export interface IAlert {
 	group_id: string;
 	name: string;
 	variation_conditions: AlertVariationConditions;
+	tts_volume: number;
+	tts_type: TtsType;
+	tts_settings?: IEdgeTtsSettings;
 	status: boolean;
 	amount: number;
 	title_style: ITextStyle;
@@ -155,14 +158,11 @@ export interface ITextStyle {
 export interface ISettings {
 	id: number;
 	moderation_duration: number;
-	tts_volume: number;
 	alert_paused: boolean;
 	remove_links: boolean;
 	black_list: string;
 	language: string;
 	currency: Currency;
-	tts_type: TtsType;
-	tts_settings?: IEdgeTtsSettings;
 	widget_token: string;
 }
 
