@@ -59,6 +59,7 @@ export enum AppEvent {
 	Redemption = "Redemption",
 	ChatMessage = "ChatMessage",
 	ChatMessageDelete = "ChatMessageDelete",
+	CommandAction = "CommandAction",
 }
 export enum StreamElementsEvent {
 	Connect = "Connect",
@@ -160,7 +161,7 @@ export enum MessageType {
 	Follow = "Follow",
 	Raid = "Raid",
 	Redemption = "Redemption",
-	Command = "Command",
+	CommandAction = "CommandAction",
 }
 export enum GoalType {
 	Donation = "Donation",
@@ -224,7 +225,6 @@ export enum UserLevel {
 	Moderator = "Moderator",
 	Vip = "Vip",
 	Subscriber = "Subscriber",
-	Follower = "Follower",
 	Anyone = "Anyone",
 }
 

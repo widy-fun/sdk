@@ -32,6 +32,7 @@ export interface IClientMessage {
 	subscription?: ISubscription;
 	raid?: IRaid;
 	redemption?: IRedemption;
+	command_action?: ICommandAction;
 	created_at: number;
 }
 export interface IDonation {
@@ -102,6 +103,7 @@ export interface IMessagesFilter {
 	exclude_follows: boolean;
 	exclude_raids: boolean;
 	exclude_redemptions: boolean;
+	exclude_commands_actions: boolean;
 }
 
 export interface IEventMessage<T> {
@@ -679,6 +681,7 @@ export interface ISenderRoles {
 	is_subscriber: boolean;
 	is_verified: boolean;
 	is_bot: boolean;
+	is_vip: boolean;
 }
 
 export interface IUnifiedSender {
@@ -755,6 +758,7 @@ export interface ICommand {
 	chat?: IChatSource;
 	timer?: ITimerSource;
 	source_type: CommandSourceType;
+	is_enabled: boolean;
 }
 
 export interface IChatSource {
@@ -765,13 +769,25 @@ export interface IChatSource {
 
 export interface ITimerSource {
 	message: string;
-	interval: number;
-	lines: number;
-	alias?: string;
+	mins_passed: number;
+	lines_passed: number;
 	post_type: PostType;
 }
 
 export interface IChatBotAction {
 	message: string;
 	replay: boolean;
+	platforms: Platform[];
+}
+
+export interface ICommandAction {
+	id: string;
+	user_name: string;
+	user_input?: string;
+	command_id: string;
+	command_name: string;
+	message_id: string;
+	platform?: Platform;
+	media?: IMedia;
+	alert?: IAlert;
 }
