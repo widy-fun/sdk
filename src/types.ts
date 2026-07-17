@@ -142,6 +142,7 @@ export interface IAlert {
 	status: boolean;
 	amount: number;
 	title_style: ITextStyle;
+	title_template: string;
 	message_style: ITextStyle;
 	reward_id?: string;
 	command_id?: string;
