@@ -1,6 +1,7 @@
 import type {
 	AlertVariant,
 	AlertVariationConditions,
+	AppError,
 	AppEvent,
 	CommandSourceType,
 	Currency,
@@ -791,4 +792,10 @@ export interface ICommandAction {
 	platform?: Platform;
 	media?: IMedia;
 	alert?: IAlert;
+}
+
+export interface SerializedAppError {
+	kind: AppError;
+	data: string;
+	message?: string;
 }

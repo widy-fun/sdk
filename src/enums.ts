@@ -232,3 +232,18 @@ export enum PostType {
 	Normal = "Normal",
 	Announcement = "Announcement",
 }
+
+export enum AppError {
+	HttpRequest = "HttpRequest",
+	HttpStatus = "HttpStatus",
+	ParseError = "ParseError",
+	Config = "Config",
+	DbError = "DbError",
+	Zip = "Zip",
+	WidySol = "WidySol",
+	StreamLabs = "StreamLabs",
+	Websocket = "Websocket",
+	NSFW = "NSFW",
+	Custom = "Custom",
+	Io = "Io",
+}
