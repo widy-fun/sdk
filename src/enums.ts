@@ -246,4 +246,5 @@ export enum AppError {
 	NSFW = "NSFW",
 	Custom = "Custom",
 	Io = "Io",
+	Internet = "Internet",
 }

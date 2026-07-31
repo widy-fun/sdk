@@ -794,8 +794,12 @@ export interface ICommandAction {
 	alert?: IAlert;
 }
 
-export interface SerializedAppError {
+export interface ISerializedAppError {
 	kind: AppError;
 	data: string;
 	message?: string;
+}
+
+export interface IInitialState {
+	error?: ISerializedAppError;
 }
