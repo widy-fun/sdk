@@ -802,4 +802,5 @@ export interface ISerializedAppError {
 
 export interface IInitialState {
 	error?: ISerializedAppError;
+	is_initialized:boolean;
 }
