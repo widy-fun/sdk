@@ -60,6 +60,11 @@ export enum AppEvent {
 	ChatMessage = "ChatMessage",
 	ChatMessageDelete = "ChatMessageDelete",
 	CommandAction = "CommandAction",
+	TtsPlayed = "TtsPlayed",
+	TtsPlaying = "TtsPlaying",
+	ReplayTts = "ReplayTts",
+	SkipTts = "SkipTts",
+	SkipPlayingTts = "SkipPlayingTts",
 }
 export enum StreamElementsEvent {
 	Connect = "Connect",
@@ -178,11 +183,12 @@ export enum WidyNetwork {
 export enum TtsType {
 	Google = "Google",
 	Edge = "Edge",
+	Piper = "Piper",
 }
 
 export enum Gender {
 	Male = "Male",
-	Female = "Edge",
+	Female = "Female",
 }
 
 export enum NsfwLabel {
@@ -197,6 +203,7 @@ export enum RewardType {
 	Media = "Media",
 	Auction = "Auction",
 	Alert = "Alert",
+	TTS = "TTS",
 }
 
 export enum AlertVariant {

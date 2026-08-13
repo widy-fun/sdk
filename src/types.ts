@@ -139,7 +139,7 @@ export interface IAlert {
 	variation_conditions: AlertVariationConditions;
 	tts_volume: number;
 	tts_type: TtsType;
-	tts_settings?: IEdgeTtsSettings;
+	tts_settings?: IEdgeTtsSettings | IPiperTtsSettings;
 	status: boolean;
 	amount: number;
 	title_style: ITextStyle;
@@ -269,7 +269,7 @@ export interface IImportedLot {
 	investors: [];
 }
 export interface IEventsService extends ISubscriptions {
-	connected: boolean;
+	isConnected: () => boolean;
 	connect: () => void;
 	disconnect: () => void;
 	send: <T>(message: IEventMessage<T>) => void;
@@ -390,6 +390,10 @@ export type AlertId = string;
 
 export interface IEdgeTtsSettings {
 	gender: Gender;
+}
+
+export interface IPiperTtsSettings {
+	voices: Record<string, string>;
 }
 
 export type WidgetQuery =
@@ -536,6 +540,7 @@ export interface IReward {
 	is_global_cooldown_enabled?: boolean;
 	global_cooldown_seconds?: number;
 	should_redemptions_skip_request_queue?: boolean;
+	tts_action: ITtsAction;
 	alert?: IAlert;
 }
 
@@ -554,6 +559,7 @@ export interface IRedemption {
 	points_currency_ratio: number;
 	media?: IMedia;
 	alert?: IAlert;
+	tts?: ITts;
 }
 
 export type FragmentKind =
@@ -755,10 +761,11 @@ export interface ICommand {
 	id: string;
 	name: string;
 	description?: string;
-	chat_bot?: IChatBotAction;
+	chat_bot_action?: IChatBotAction;
+	tts_action?: ITtsAction;
 	alert?: IAlert;
-	chat?: IChatSource;
-	timer?: ITimerSource;
+	chat_source?: IChatSource;
+	timer_source?: ITimerSource;
 	source_type: CommandSourceType;
 	is_enabled: boolean;
 }
@@ -782,6 +789,12 @@ export interface IChatBotAction {
 	platforms: Platform[];
 }
 
+export interface ITtsAction {
+	tts_type: TtsType;
+	tts_settings?: IEdgeTtsSettings | IPiperTtsSettings;
+	tts_volume: number;
+}
+
 export interface ICommandAction {
 	id: string;
 	user_name: string;
@@ -792,6 +805,7 @@ export interface ICommandAction {
 	platform?: Platform;
 	media?: IMedia;
 	alert?: IAlert;
+	tts?: ITts;
 }
 
 export interface ISerializedAppError {
@@ -802,5 +816,35 @@ export interface ISerializedAppError {
 
 export interface IInitialState {
 	error?: ISerializedAppError;
-	is_initialized:boolean;
+	is_initialized: boolean;
+}
+export interface IPiperLanguage {
+	code: string;
+	family: string;
+	region: string;
+	name_english: string;
+	country_english: string;
+}
+
+export interface IPiperFileInfo {
+	size_bytes: number;
+	md5_digest: string;
+}
+
+export interface IPiperVoice {
+	key: string;
+	name: string;
+	language: IPiperLanguage;
+	quality: string;
+	num_speakers: number;
+	files: Record<string, IPiperFileInfo>;
+	aliases: string[];
+}
+
+export type PiperVoices = Record<string, IPiperVoice>;
+
+export interface ITts {
+	tts_type: TtsType;
+	audio: string;
+	tts_volume: number;
 }
