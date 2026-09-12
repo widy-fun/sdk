@@ -3,6 +3,8 @@ import type {
 	AlertVariationConditions,
 	AppError,
 	AppEvent,
+	AssistantActionType,
+	AssistantServiceStatus,
 	CommandSourceType,
 	Currency,
 	Gender,
@@ -19,6 +21,7 @@ import type {
 	StreamElementsEventType,
 	TextAnimation,
 	TextAnimationVariant,
+	ToolCallingProvider,
 	TtsType,
 	UserLevel,
 	ViewType,
@@ -34,6 +37,7 @@ export interface IClientMessage {
 	raid?: IRaid;
 	redemption?: IRedemption;
 	command_action?: ICommandAction;
+	assistant_action?: IAssistantAction;
 	created_at: number;
 }
 export interface IDonation {
@@ -105,6 +109,7 @@ export interface IMessagesFilter {
 	exclude_raids: boolean;
 	exclude_redemptions: boolean;
 	exclude_commands_actions: boolean;
+	exclude_assistant_actions: boolean;
 }
 
 export interface IEventMessage<T> {
@@ -321,7 +326,7 @@ export interface IDestreamAuth {
 	overlayid: string;
 }
 
-export interface ITributeAuth {
+export interface IApiKeyAuth {
 	api_key: string;
 }
 
@@ -808,6 +813,13 @@ export interface ICommandAction {
 	tts?: ITts;
 }
 
+export interface IAssistantAction {
+	id: string;
+	message_id: string;
+	type: AssistantActionType;
+	data: IAlert | IBanUserData;
+}
+
 export interface ISerializedAppError {
 	kind: AppError;
 	data: string;
@@ -847,4 +859,31 @@ export interface ITts {
 	tts_type: TtsType;
 	audio: string;
 	tts_volume: number;
+}
+
+export interface IInputDeviceInfo {
+	id: string;
+	name: string;
+	selected: boolean;
+	default: boolean;
+}
+
+export interface IAssistantSettings {
+	id: number;
+	tool_calling_provider: ToolCallingProvider;
+	tool_calling_model: string;
+	stt_model: string;
+	stt_language: string;
+	device_id: string;
+	enable_on_start: boolean;
+}
+
+export interface IAssistantStatus {
+	status: AssistantServiceStatus;
+}
+
+export interface IBanUserData {
+	name: string;
+	platform: Platform;
+	id: string;
 }

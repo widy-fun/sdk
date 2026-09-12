@@ -65,6 +65,9 @@ export enum AppEvent {
 	ReplayTts = "ReplayTts",
 	SkipTts = "SkipTts",
 	SkipPlayingTts = "SkipPlayingTts",
+	AssistantStartTranscribe = "AssistantStartTranscribe",
+	AssistantStopTranscribe = "AssistantStopTranscribe",
+	AssistantAction = "AssistantAction",
 }
 export enum StreamElementsEvent {
 	Connect = "Connect",
@@ -149,6 +152,7 @@ export enum ServiceType {
 	Kick = "Kick",
 	KickBot = "KickBot",
 	TwitchBot = "TwitchBot",
+	Gemini = "Gemini",
 }
 
 export enum Platform {
@@ -167,6 +171,7 @@ export enum MessageType {
 	Raid = "Raid",
 	Redemption = "Redemption",
 	CommandAction = "CommandAction",
+	AssistantAction = "AssistantAction",
 }
 export enum GoalType {
 	Donation = "Donation",
@@ -254,4 +259,26 @@ export enum AppError {
 	Custom = "Custom",
 	Io = "Io",
 	Internet = "Internet",
+	Piper = "Piper",
+	STT = "STT",
+	Audio = "Audio",
+	Ort = "Ort",
+}
+
+export enum ToolCallingProvider {
+	Gemini = "Gemini",
+	Local = "Local",
+}
+
+export enum AssistantServiceStatus {
+	Stopped = "Stopped",
+	Stopping = "Stopping",
+	Starting = "Starting",
+	Started = "Started",
+	DownloadingModel = "DownloadingModel",
+}
+
+export enum AssistantActionType {
+	BanUser = "BanUser",
+	PlayAlert = "PlayAlert",
 }
