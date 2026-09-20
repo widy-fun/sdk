@@ -65,8 +65,8 @@ export enum AppEvent {
 	ReplayTts = "ReplayTts",
 	SkipTts = "SkipTts",
 	SkipPlayingTts = "SkipPlayingTts",
-	AssistantStartTranscribe = "AssistantStartTranscribe",
-	AssistantStopTranscribe = "AssistantStopTranscribe",
+	StartTranscribe = "StartTranscribe",
+	StopTranscribe = "StopTranscribe",
 	AssistantAction = "AssistantAction",
 }
 export enum StreamElementsEvent {
@@ -153,6 +153,9 @@ export enum ServiceType {
 	KickBot = "KickBot",
 	TwitchBot = "TwitchBot",
 	Gemini = "Gemini",
+	OpenAI = "OpenAI",
+	Claude = "Claude",
+	KickSession = "KickSession",
 }
 
 export enum Platform {
@@ -267,6 +270,8 @@ export enum AppError {
 
 export enum ToolCallingProvider {
 	Gemini = "Gemini",
+	Claude = "Claude",
+	OpenAI = "OpenAI",
 	Local = "Local",
 }
 
@@ -280,5 +285,18 @@ export enum AssistantServiceStatus {
 
 export enum AssistantActionType {
 	BanUser = "BanUser",
+	UnbanUser = "UnbanUser",
 	PlayAlert = "PlayAlert",
+	PinMessage = "PinMessage",
+	ChangeChannelTitle = "ChangeChannelTitle",
+	ChangeChannelCategory = "ChangeChannelCategory",
+	AddFollowMode = "AddFollowMode",
+	RemoveFollowMode = "RemoveFollowMode",
+	AddEmotesMode = "AddEmotesMode",
+	RemoveEmotesMode = "RemoveEmotesMode",
+	AddSubscribersMode = "AddSubscribersMode",
+	RemoveSubscribersMode = "RemoveSubscribersMode",
+	AddSlowMode = "AddSlowMode",
+	RemoveSlowMode = "RemoveSlowMode",
+	PlayMedia = "PlayMedia",
 }

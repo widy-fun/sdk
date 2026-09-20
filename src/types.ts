@@ -330,6 +330,10 @@ export interface IApiKeyAuth {
 	api_key: string;
 }
 
+export interface IKickSessionToken {
+	session_token: string;
+}
+
 export interface IDonatePayAuth {
 	access_token: string;
 }
@@ -817,7 +821,13 @@ export interface IAssistantAction {
 	id: string;
 	message_id: string;
 	type: AssistantActionType;
-	data: IAlert | IBanUserData;
+	data:
+		| IAlert
+		| IUserData
+		| IPinedMessageData
+		| IChanelData
+		| IChatSettingsData
+		| IMediaData;
 }
 
 export interface ISerializedAppError {
@@ -871,19 +881,75 @@ export interface IInputDeviceInfo {
 export interface IAssistantSettings {
 	id: number;
 	tool_calling_provider: ToolCallingProvider;
-	tool_calling_model: string;
+	tool_calling_model: IToolCallingModel;
 	stt_model: string;
 	stt_language: string;
 	device_id: string;
 	enable_on_start: boolean;
+	tools: ITool[];
+	vad_threshold: number;
+	wake_threshold: number;
+	silence_hangover_frames: number;
+	max_tokens: number;
+	max_chars: number;
+	tts_volume: number;
+	tts_type: TtsType;
+	tts_settings?: IEdgeTtsSettings | IPiperTtsSettings;
 }
 
 export interface IAssistantStatus {
 	status: AssistantServiceStatus;
 }
 
-export interface IBanUserData {
+export interface IUserData {
 	name: string;
 	platform: Platform;
 	id: string;
+}
+
+export interface IPinedMessageData {
+	message: string;
+	platform: Platform;
+}
+
+export interface IChanelData {
+	title?: string;
+	platform: Platform;
+	category?: string;
+}
+
+export interface IChatSettingsData {
+	platform: Platform;
+}
+
+export interface IMediaData {
+	media: IMedia;
+	title: string;
+}
+
+export interface IToolCallingModel {
+	id: string;
+	display_name: string;
+}
+
+export interface ITool {
+	type: string;
+	function: IFunctionDef;
+}
+
+export interface IFunctionDef {
+	name: string;
+	description: string;
+	parameters: IParameters;
+}
+
+export interface IParameters {
+	type: string;
+	properties: Record<string, IPropertySchema>;
+	required: string[];
+}
+
+export interface IPropertySchema {
+	type: string;
+	description: string;
 }
