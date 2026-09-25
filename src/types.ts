@@ -7,6 +7,7 @@ import type {
 	AssistantServiceStatus,
 	CommandSourceType,
 	Currency,
+	FishAudioTtsModel,
 	Gender,
 	GoalProgressLayout,
 	GoalTextPosition,
@@ -142,9 +143,7 @@ export interface IAlert {
 	group_id: string;
 	name: string;
 	variation_conditions: AlertVariationConditions;
-	tts_volume: number;
-	tts_type: TtsType;
-	tts_settings?: ITtsSettings;
+	tts_settings: ITtsSettings;
 	status: boolean;
 	amount: number;
 	title_style: ITextStyle;
@@ -397,8 +396,12 @@ export type MessageId = string;
 export type DonationId = string;
 export type AlertId = string;
 
-export interface IEdgeTtsSettings {
+export interface IEdgeTtsExtra {
 	gender: Gender;
+}
+
+export interface IFishAudioExtra {
+	model: FishAudioTtsModel;
 }
 
 export type WidgetQuery =
@@ -545,7 +548,7 @@ export interface IReward {
 	is_global_cooldown_enabled?: boolean;
 	global_cooldown_seconds?: number;
 	should_redemptions_skip_request_queue?: boolean;
-	tts_action: ITtsAction;
+	tts_settings: ITtsSettings;
 	alert?: IAlert;
 }
 
@@ -767,7 +770,7 @@ export interface ICommand {
 	name: string;
 	description?: string;
 	chat_bot_action?: IChatBotAction;
-	tts_action?: ITtsAction;
+	tts_settings?: ITtsSettings;
 	alert?: IAlert;
 	chat_source?: IChatSource;
 	timer_source?: ITimerSource;
@@ -794,10 +797,11 @@ export interface IChatBotAction {
 	platforms: Platform[];
 }
 
-export interface ITtsAction {
-	tts_type: TtsType;
-	tts_settings?: ITtsSettings;
-	tts_volume: number;
+export interface ITtsSettings {
+	type: TtsType;
+	extra?: ITtsExtra;
+	models?: ITtsModels;
+	volume: number;
 }
 
 export interface ICommandAction {
@@ -860,9 +864,9 @@ export interface IPiperVoice {
 }
 
 export interface ITts {
-	tts_type: TtsType;
+	type: TtsType;
 	audio: string;
-	tts_volume: number;
+	volume: number;
 }
 
 export interface IInputDeviceInfo {
@@ -886,9 +890,7 @@ export interface IAssistantSettings {
 	silence_hangover_frames: number;
 	max_tokens: number;
 	max_chars: number;
-	tts_volume: number;
-	tts_type: TtsType;
-	tts_settings?: ITtsSettings;
+	tts_settings: ITtsSettings;
 }
 
 export interface IAssistantStatus {
@@ -948,11 +950,9 @@ export interface IPropertySchema {
 	description: string;
 }
 
-export type ITtsSettings =
-	| undefined
-	| IEdgeTtsSettings
-	| IPiperVoice[]
-	| IFishAudioModel[];
+export type ITtsExtra = undefined | IEdgeTtsExtra | IFishAudioExtra;
+
+export type ITtsModels = undefined | IFishAudioModel[] | IPiperVoice[];
 
 type ModelType = "svc" | "tts";
 

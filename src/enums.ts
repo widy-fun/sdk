@@ -302,3 +302,11 @@ export enum AssistantActionType {
 	RemoveSlowMode = "RemoveSlowMode",
 	PlayMedia = "PlayMedia",
 }
+
+export enum FishAudioTtsModel {
+	S1 = "s1",
+	S2Pro = "s2-pro",
+	S21Pro = "s2.1-pro",
+	S21ProFree = "s2.1-pro-free",
+	Drama3Preview = "drama-3-preview",
+}
