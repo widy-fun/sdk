@@ -144,7 +144,7 @@ export interface IAlert {
 	variation_conditions: AlertVariationConditions;
 	tts_volume: number;
 	tts_type: TtsType;
-	tts_settings?: IEdgeTtsSettings | IPiperTtsSettings;
+	tts_settings?: ITtsSettings;
 	status: boolean;
 	amount: number;
 	title_style: ITextStyle;
@@ -399,10 +399,6 @@ export type AlertId = string;
 
 export interface IEdgeTtsSettings {
 	gender: Gender;
-}
-
-export interface IPiperTtsSettings {
-	voices: Record<string, string>;
 }
 
 export type WidgetQuery =
@@ -800,7 +796,7 @@ export interface IChatBotAction {
 
 export interface ITtsAction {
 	tts_type: TtsType;
-	tts_settings?: IEdgeTtsSettings | IPiperTtsSettings;
+	tts_settings?: ITtsSettings;
 	tts_volume: number;
 }
 
@@ -863,8 +859,6 @@ export interface IPiperVoice {
 	aliases: string[];
 }
 
-export type PiperVoices = Record<string, IPiperVoice>;
-
 export interface ITts {
 	tts_type: TtsType;
 	audio: string;
@@ -894,7 +888,7 @@ export interface IAssistantSettings {
 	max_chars: number;
 	tts_volume: number;
 	tts_type: TtsType;
-	tts_settings?: IEdgeTtsSettings | IPiperTtsSettings;
+	tts_settings?: ITtsSettings;
 }
 
 export interface IAssistantStatus {
@@ -952,4 +946,119 @@ export interface IParameters {
 export interface IPropertySchema {
 	type: string;
 	description: string;
+}
+
+export type ITtsSettings =
+	| undefined
+	| IEdgeTtsSettings
+	| IPiperVoice[]
+	| IFishAudioModel[];
+
+type ModelType = "svc" | "tts";
+
+type ModelState = "created" | "training" | "trained" | "failed";
+
+type Visibility = "public" | "unlist" | "private";
+
+type TrainMode = "fast" | "full";
+
+type TakedownCategory = "dmca" | "policy";
+
+type PvcReleaseState = "released" | "retiring";
+
+interface IAuthorEntity {
+	_id: string;
+	nickname: string;
+	avatar: string;
+}
+
+interface ISampleEntity {
+	title: string;
+	text: string;
+	task_id: string;
+	audio: string;
+}
+
+interface IModelAudioQualityEntity {
+	filename: string;
+	duration_ms: number;
+	language: string;
+	quality?: Record<string, number>;
+	quality_passed?: boolean;
+	quality_reason?: string;
+}
+
+interface IModelQualityEntity {
+	audios?: IModelAudioQualityEntity[];
+	created_at: string;
+	updated_at: string;
+}
+
+export interface IFishAudioModel {
+	_id: string;
+	type: ModelType;
+	title: string;
+	state: ModelState;
+	tags: string[];
+	created_at: string;
+	updated_at: string;
+	visibility: Visibility;
+	like_count: number;
+	mark_count: number;
+	shared_count: number;
+	task_count: number;
+	author: IAuthorEntity;
+	train_mode: TrainMode;
+	description?: string;
+	cover_image?: string;
+	samples?: ISampleEntity[];
+	languages?: string[];
+	lock_visibility?: boolean;
+	dmca_taken_down?: boolean | null;
+	takedown_category?: TakedownCategory | null;
+	default_text?: string;
+	source?: string | null;
+	licensed?: boolean;
+	pvc_release_state?: PvcReleaseState | null;
+	pvc_notice_period_months?: number | null;
+	pvc_released_at?: string | null;
+	pvc_retire_requested_at?: string | null;
+	pvc_retire_effective_at?: string | null;
+	quality?: IModelQualityEntity | null;
+	unliked?: boolean;
+	liked?: boolean;
+	marked?: boolean;
+}
+
+export interface IFishAudioListModelsResponse {
+	total: number;
+	items: IFishAudioModel[];
+	max_offset?: number;
+	accessible_upper_bound?: number;
+	window_limited: boolean;
+	total_is_exact: boolean;
+	has_more?: boolean;
+}
+
+export interface IFishAudioListModelsFilter {
+	title?: string;
+	tag?: string[];
+	self?: boolean;
+	author_id?: string;
+	language?: string;
+	title_language?: string[];
+	licensed?: boolean;
+	sort_by?: SortBy;
+}
+
+export interface IFishAudioPageParams {
+	pageNumber: number;
+	pageSize: number;
+}
+
+type SortBy = "score" | "task_count" | "created_at";
+
+export interface IFishAudioSearchFilter {
+	isSearchLanguage?: boolean;
+	isSearchTitle?: boolean;
 }

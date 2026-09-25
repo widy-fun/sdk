@@ -156,6 +156,7 @@ export enum ServiceType {
 	OpenAI = "OpenAI",
 	Claude = "Claude",
 	KickSession = "KickSession",
+	FishAudio = "FishAudio",
 }
 
 export enum Platform {
@@ -192,6 +193,7 @@ export enum TtsType {
 	Google = "Google",
 	Edge = "Edge",
 	Piper = "Piper",
+	FishAudio = "FishAudio",
 }
 
 export enum Gender {
