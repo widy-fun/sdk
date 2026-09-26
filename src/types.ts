@@ -419,16 +419,20 @@ export type WidgetMutation =
 	| "widgets:auc-fighter:match-winner.send"
 	| "widgets:auc-fighter:match-paused.send"
 	| "widgets:auc-fighter:match-id.send"
-	| "widgets:alert:played.send"
-	| "widgets:alert:playing.send"
 	| "widgets:media:played.send"
 	| "widgets:media:end.send"
 	| "widgets:media:playing.send"
 	| "widgets:media:paused.send"
 	| "widgets:media:error.send"
 	| "widgets:media:replay.send"
+	| "widgets:alert:played.send"
+	| "widgets:alert:playing.send"
 	| "widgets:alert:replay.send"
 	| "widgets:alert:skip.send"
+	| "widgets:tts:played.send"
+	| "widgets:tts:playing.send"
+	| "widgets:tts:replay.send"
+	| "widgets:tts:skip.send"
 	| "widgets:view:storage.write"
 	| "widgets:control:storage.write";
 
@@ -445,6 +449,7 @@ export type WidgetSubscription =
 	| "widgets:alert:replay.subscription"
 	| "widgets:alert:skip.subscription"
 	| "widgets:alert:skip-playing.subscription"
+	| "widgets:alert:played.subscription"
 	| "widgets:alert:update.subscription"
 	| "widgets:media:replay.subscription"
 	| "widgets:media:settings.subscription"
@@ -454,7 +459,6 @@ export type WidgetSubscription =
 	| "widgets:media:error.subscription"
 	| "widgets:media:pause.subscription"
 	| "widgets:media:play.subscription"
-	| "widgets:alert:played.subscription"
 	| "widgets:view:storage.subscription"
 	| "widgets:control:storage.subscription"
 	| "widgets:donation.subscription"
@@ -462,7 +466,14 @@ export type WidgetSubscription =
 	| "widgets:chat-message.subscription"
 	| "widgets:chat-message-delete.subscription"
 	| "widgets:media.subscription"
-	| "widgets:alert.subscription";
+	| "widgets:alert.subscription"
+	| "widgets:command:action.subscription"
+	| "widgets:assistant:action.subscription"
+	| "widgets:tts:replay.subscription"
+	| "widgets:tts:skip.subscription"
+	| "widgets:tts:skip-playing.subscription"
+	| "widgets:tts:played.subscription"
+	| "widgets:channel-user-banned.subscription";
 
 export type WidgetScopes = WidgetQuery | WidgetSubscription | WidgetMutation;
 
