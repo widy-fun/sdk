@@ -307,11 +307,11 @@ export interface IGoal {
 	progress_style: ITextStyle;
 	limits_style: ITextStyle;
 }
-export interface IService<T = undefined, S = undefined> {
+export interface IService<T = undefined, E = undefined> {
 	id: ServiceType;
 	authorized: boolean;
 	auth: T;
-	settings: S;
+	extra: E;
 }
 export interface IStreamElementsAuth {
 	jwt_token: string;
