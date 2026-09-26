@@ -68,6 +68,7 @@ export enum AppEvent {
 	StartTranscribe = "StartTranscribe",
 	StopTranscribe = "StopTranscribe",
 	AssistantAction = "AssistantAction",
+	ChannelUserBanned = "ChannelUserBanned",
 }
 export enum StreamElementsEvent {
 	Connect = "Connect",

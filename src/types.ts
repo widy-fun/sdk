@@ -1062,3 +1062,26 @@ export interface IFishAudioSearchFilter {
 	isSearchLanguage?: boolean;
 	isSearchTitle?: boolean;
 }
+
+export interface IBannedTargetUser {
+	id: string;
+	username: string;
+	display_name?: string | null;
+}
+
+export interface IBanIssuedBy {
+	id: string;
+	username: string;
+}
+
+export interface IUnifiedBannedUser {
+	platform: Platform;
+	event_id?: string | null;
+	channel_id?: string | null;
+	target_user: IBannedTargetUser;
+	banned_by?: IBanIssuedBy | null;
+	reason?: string | null;
+	banned_at?: string | null;
+	ends_at?: string | null;
+	permanent: boolean;
+}
