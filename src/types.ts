@@ -7,11 +7,14 @@ import type {
 	AssistantServiceStatus,
 	CommandSourceType,
 	Currency,
+	DonationSort,
 	FishAudioTtsModel,
 	Gender,
 	GoalProgressLayout,
 	GoalTextPosition,
 	GoalType,
+	KickActionType,
+	KickSourceType,
 	MediaType,
 	MessageType,
 	NsfwLabel,
@@ -231,6 +234,7 @@ export interface ILot {
 	dropoutOptionSize?: number;
 	normalOptionSize?: number;
 	winChancePercent?: string;
+	id?: string;
 }
 
 export interface IAucFighterGame {
@@ -412,7 +416,8 @@ export type WidgetQuery =
 	| "widgets:alerts.read"
 	| "widgets:view:storage.read"
 	| "widgets:control:storage.read"
-	| "widgets:media:settings.read";
+	| "widgets:media:settings.read"
+	| "widgets:donations.read";
 
 export type WidgetMutation =
 	| "widgets:auc-fighter:match-playing.send"
@@ -473,7 +478,9 @@ export type WidgetSubscription =
 	| "widgets:tts:skip.subscription"
 	| "widgets:tts:skip-playing.subscription"
 	| "widgets:tts:played.subscription"
-	| "widgets:channel-user-banned.subscription";
+	| "widgets:channel-user-banned.subscription"
+	| "widgets:channel-subscription.subscription"
+	| "widgets:command-auction-action.subscription";
 
 export type WidgetScopes = WidgetQuery | WidgetSubscription | WidgetMutation;
 
@@ -781,6 +788,9 @@ export interface ICommand {
 	name: string;
 	description?: string;
 	chat_bot_action?: IChatBotAction;
+	auction_action?: IAuctionAction;
+	kick_action?: IKickAction;
+	kick_source?: IKickSource;
 	tts_settings?: ITtsSettings;
 	alert?: IAlert;
 	chat_source?: IChatSource;
@@ -800,6 +810,15 @@ export interface ITimerSource {
 	mins_passed: number;
 	lines_passed: number;
 	post_type: PostType;
+}
+
+export interface IKickSource {
+	type: KickSourceType;
+}
+
+export interface IKickAction {
+	type: KickActionType;
+	target: IPinMessageTarget;
 }
 
 export interface IChatBotAction {
@@ -1095,4 +1114,41 @@ export interface IUnifiedBannedUser {
 	banned_at?: string | null;
 	ends_at?: string | null;
 	permanent: boolean;
+}
+
+export interface IAuctionEvent {
+	id: string;
+	amount: number;
+	user_name: string;
+	currency: Currency;
+	text?: string;
+	service: ServiceType;
+	exchanged_amount: number;
+	exchanged_currency: Currency;
+	created_at: number;
+}
+
+export interface IAuctionAction {
+	regular_luck_modifier: number;
+	subscriber_luck_modifier: number;
+	vip_luck_modifier: number;
+	moderator_luck_modifier: number;
+}
+
+export interface ICommandAuctionAction {
+	amount: number;
+	user_name: string;
+	user_id: string;
+	platform: Platform;
+}
+
+export interface IDonationsQuery {
+	from?: number;
+	to?: number;
+	limit: number;
+	sort: DonationSort;
+}
+
+export interface IPinMessageTarget {
+	message: string;
 }

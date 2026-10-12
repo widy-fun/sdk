@@ -69,6 +69,8 @@ export enum AppEvent {
 	StopTranscribe = "StopTranscribe",
 	AssistantAction = "AssistantAction",
 	ChannelUserBanned = "ChannelUserBanned",
+	ChannelSubscription = "ChannelSubscription",
+	CommandAuctionAction = "CommandAuctionAction",
 }
 export enum StreamElementsEvent {
 	Connect = "Connect",
@@ -235,6 +237,7 @@ export enum TextAnimationVariant {
 export enum CommandSourceType {
 	Chat = "Chat",
 	Timer = "Timer",
+	Kick = "Kick",
 	None = "None",
 }
 
@@ -310,4 +313,23 @@ export enum FishAudioTtsModel {
 	S21Pro = "s2.1-pro",
 	S21ProFree = "s2.1-pro-free",
 	Drama3Preview = "drama-3-preview",
+}
+
+export enum LotVariant {
+	Donation = "Donation",
+	CommandAuctionAction = "CommandAuctionAction",
+	ChannelSubscription = "ChannelSubscription",
+}
+
+export enum DonationSort {
+	Newest = "Newest",
+	Largest = "Largest",
+}
+
+export enum KickSourceType {
+	StreamStart = "StreamStart",
+}
+
+export enum KickActionType {
+	PinMessage = "PinMessage",
 }
