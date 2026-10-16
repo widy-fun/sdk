@@ -1152,3 +1152,10 @@ export interface IDonationsQuery {
 export interface IPinMessageTarget {
 	message: string;
 }
+
+export interface IVariable {
+	id: string;
+	name: string;
+	description: string;
+	value: string;
+}

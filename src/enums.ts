@@ -174,6 +174,7 @@ export enum StreamElementsEventType {
 export enum MessageType {
 	Donation = "Donation",
 	Subscription = "Subscription",
+	GiftSubscription = "GiftSubscription",
 	Follow = "Follow",
 	Raid = "Raid",
 	Redemption = "Redemption",
