@@ -160,6 +160,7 @@ export enum ServiceType {
 	Claude = "Claude",
 	KickSession = "KickSession",
 	FishAudio = "FishAudio",
+	TelegramBot = "TelegramBot",
 }
 
 export enum Platform {
@@ -239,6 +240,7 @@ export enum CommandSourceType {
 	Chat = "Chat",
 	Timer = "Timer",
 	Kick = "Kick",
+	Twitch = "Twitch",
 	None = "None",
 }
 
@@ -273,6 +275,7 @@ export enum AppError {
 	STT = "STT",
 	Audio = "Audio",
 	Ort = "Ort",
+	TelegramBot = "TelegramBot",
 }
 
 export enum ToolCallingProvider {
@@ -328,9 +331,19 @@ export enum DonationSort {
 }
 
 export enum KickSourceType {
-	StreamStart = "StreamStart",
+	StreamStarted = "StreamStarted",
+	StreamStopped = "StreamStopped",
 }
 
 export enum KickActionType {
+	PinMessage = "PinMessage",
+}
+
+export enum TwitchSourceType {
+	StreamStarted = "StreamStarted",
+	StreamStopped = "StreamStopped",
+}
+
+export enum TwitchActionType {
 	PinMessage = "PinMessage",
 }

@@ -27,6 +27,8 @@ import type {
 	TextAnimationVariant,
 	ToolCallingProvider,
 	TtsType,
+	TwitchActionType,
+	TwitchSourceType,
 	UserLevel,
 	ViewType,
 	WidyNetwork,
@@ -321,16 +323,16 @@ export interface IStreamElementsAuth {
 	jwt_token: string;
 }
 
-export interface IDonationAlertsAuth {
-	token: string;
-}
-
 export interface IDestreamAuth {
 	overlayid: string;
 }
 
 export interface IApiKeyAuth {
 	api_key: string;
+}
+
+export interface ITokenAuth {
+	token: string;
 }
 
 export interface IKickSessionToken {
@@ -513,6 +515,7 @@ export interface IManifest {
 	repository: string;
 	scopes: string[];
 	csp?: ICsp;
+	embedded?: boolean;
 }
 
 export interface ICsp {
@@ -791,6 +794,9 @@ export interface ICommand {
 	auction_action?: IAuctionAction;
 	kick_action?: IKickAction;
 	kick_source?: IKickSource;
+	twitch_action?: ITwitchAction;
+	twitch_source?: ITwitchSource;
+	telegram_bot_action?: ITelegramBotAction;
 	tts_settings?: ITtsSettings;
 	alert?: IAlert;
 	chat_source?: IChatSource;
@@ -818,6 +824,20 @@ export interface IKickSource {
 
 export interface IKickAction {
 	type: KickActionType;
+	target: IPinMessageTarget;
+}
+
+export interface ITwitchSource {
+	type: TwitchSourceType;
+}
+
+export interface ITelegramBotAction {
+	channel: string;
+	message: string;
+}
+
+export interface ITwitchAction {
+	type: TwitchActionType;
 	target: IPinMessageTarget;
 }
 
