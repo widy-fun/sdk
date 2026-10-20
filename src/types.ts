@@ -225,6 +225,9 @@ export interface IMedia {
 	media_type: MediaType;
 	expires?: number;
 	temporary_src?: string;
+	title?: string;
+	thumbnail_url?: string;
+	duration?: number;
 }
 export interface ILot {
 	fastId: number;
@@ -877,7 +880,7 @@ export interface IAssistantAction {
 		| IPinedMessageData
 		| IChanelData
 		| IChatSettingsData
-		| IMediaData;
+		| IMedia;
 }
 
 export interface ISerializedAppError {
@@ -966,11 +969,6 @@ export interface IChanelData {
 
 export interface IChatSettingsData {
 	platform: Platform;
-}
-
-export interface IMediaData {
-	media: IMedia;
-	title: string;
 }
 
 export interface IToolCallingModel {
