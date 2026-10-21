@@ -229,6 +229,7 @@ export interface IMedia {
 	title?: string;
 	thumbnail_url?: string;
 	duration?: number;
+	view_count?: number;
 }
 export interface ILot {
 	fastId: number;
