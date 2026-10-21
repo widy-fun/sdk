@@ -213,6 +213,7 @@ export interface IMediaSettings {
 	youtube: IMediaPlatformSettings;
 	twitch: IMediaPlatformSettings;
 	tiktok: IMediaPlatformSettings;
+	kick: IMediaPlatformSettings;
 }
 export interface IMediaPlatformSettings {
 	enabled: boolean;
