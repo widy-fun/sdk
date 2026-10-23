@@ -227,6 +227,7 @@ export interface IMedia {
 	expires?: number;
 	temporary_src?: string;
 	title?: string;
+	creator?: string;
 	thumbnail_url?: string;
 	duration?: number;
 	view_count?: number;
