@@ -277,6 +277,7 @@ export enum AppError {
 	Audio = "Audio",
 	Ort = "Ort",
 	TelegramBot = "TelegramBot",
+	Media = "Media",
 }
 
 export enum ToolCallingProvider {
