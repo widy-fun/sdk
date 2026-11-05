@@ -18,6 +18,8 @@ import type {
 	MediaType,
 	MessageType,
 	NsfwLabel,
+	ObsActionType,
+	ObsRequestType,
 	Platform,
 	PostType,
 	RewardType,
@@ -808,6 +810,7 @@ export interface ICommand {
 	chat_source?: IChatSource;
 	timer_source?: ITimerSource;
 	source_type: CommandSourceType;
+	obs_action?: IObsAction;
 	is_enabled: boolean;
 }
 
@@ -1179,4 +1182,99 @@ export interface IVariable {
 	name: string;
 	description: string;
 	value: string;
+}
+
+export interface IObsAuth {
+	ip: string;
+	port: number;
+	password?: string;
+}
+
+export interface IObsAction {
+	type: ObsActionType;
+	filter?: IObsFilterAction;
+}
+
+export interface IObsFilterAction {
+	sceneUuid?: string;
+	sceneName?: string;
+	sourceUuid?: string;
+	sourceName?: string;
+	filterName?: string;
+	filterDuration?: number;
+}
+
+export interface IObsResponseData<T> {
+	requestType: ObsRequestType;
+	requestId: string;
+	requestStatus: IObsRequestStatus;
+	responseData: T;
+}
+
+export interface IObsRequestStatus {
+	result: boolean;
+	code: number;
+	comment?: string;
+}
+
+export interface IObsGetInputListResponse {
+	inputs: IObsInput[];
+}
+
+export interface IObsInput {
+	inputName: string;
+	inputUuid: string;
+	inputKind: string;
+	unversionedInputKind: string;
+}
+
+export interface IObsGetSceneListResponse {
+	currentProgramSceneName: string;
+	currentProgramSceneUuid: string;
+	currentPreviewSceneName?: string;
+	currentPreviewSceneUuid?: string;
+	scenes: IObsScene[];
+}
+
+export interface IObsScene {
+	sceneIndex: number;
+	sceneName: string;
+	sceneUuid: string;
+}
+
+export interface IObsGetSceneItemListResponse {
+	sceneItems: IObsSceneItem[];
+}
+
+export interface IObsSceneItem {
+	sceneItemId: number;
+	sceneItemIndex: number;
+	sourceName: string;
+	sourceUuid: string;
+	sourceType: string;
+	inputKind?: string;
+	isGroup?: boolean;
+	sceneItemEnabled: boolean;
+	sceneItemLocked: boolean;
+	sceneItemBlendMode: string;
+	sceneItemTransform: IObsSceneItemTransform;
+}
+
+export interface IObsSceneItemTransform {
+	positionX: number;
+	positionY: number;
+	scaleX: number;
+	scaleY: number;
+}
+
+export interface IObsGetSourceFilterListResponse {
+	filters: IObsSourceFilter[];
+}
+
+export interface IObsSourceFilter {
+	filterEnabled: boolean;
+	filterIndex: number;
+	filterKind: string;
+	filterName: string;
+	filterSettings: unknown;
 }

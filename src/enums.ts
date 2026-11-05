@@ -162,6 +162,7 @@ export enum ServiceType {
 	KickSession = "KickSession",
 	FishAudio = "FishAudio",
 	TelegramBot = "TelegramBot",
+	Obs = "Obs",
 }
 
 export enum Platform {
@@ -278,6 +279,7 @@ export enum AppError {
 	Ort = "Ort",
 	TelegramBot = "TelegramBot",
 	Media = "Media",
+	Obs = "Obs",
 }
 
 export enum ToolCallingProvider {
@@ -348,4 +350,12 @@ export enum TwitchSourceType {
 
 export enum TwitchActionType {
 	PinMessage = "PinMessage",
+}
+
+export enum ObsRequestType {
+	GetInputList = "GetInputList",
+}
+
+export enum ObsActionType {
+	Filter = "Filter",
 }
