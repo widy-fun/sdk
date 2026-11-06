@@ -578,6 +578,7 @@ export interface IReward {
 	global_cooldown_seconds?: number;
 	should_redemptions_skip_request_queue?: boolean;
 	tts_settings: ITtsSettings;
+	obs_action?: IObsAction;
 	alert?: IAlert;
 }
 

@@ -221,6 +221,7 @@ export enum RewardType {
 	Auction = "Auction",
 	Alert = "Alert",
 	TTS = "TTS",
+	OBS = "OBS",
 }
 
 export enum AlertVariant {
