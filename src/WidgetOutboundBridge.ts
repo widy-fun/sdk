@@ -1,11 +1,12 @@
 import type {
 	IWidgetResponse,
+	IWidgetTransport,
 	WidgetMutation,
 	WidgetQuery,
 	WidgetSubscription,
 } from "./types";
 
-export default class WidgetOutboundBridge {
+export default class WidgetOutboundBridge implements IWidgetTransport {
 	private readonly pendingRequests = new Map();
 	private readonly subscriptionHandlers = new Map();
 

@@ -360,3 +360,8 @@ export enum ObsRequestType {
 export enum ObsActionType {
 	Filter = "Filter",
 }
+
+export enum TokenType {
+	Moderation = "Moderation",
+	Widget = "Widget",
+}

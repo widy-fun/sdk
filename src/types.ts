@@ -27,6 +27,7 @@ import type {
 	StreamElementsEventType,
 	TextAnimation,
 	TextAnimationVariant,
+	TokenType,
 	ToolCallingProvider,
 	TtsType,
 	TwitchActionType,
@@ -435,6 +436,7 @@ export type WidgetMutation =
 	| "widgets:auc-fighter:match-paused.send"
 	| "widgets:auc-fighter:match-id.send"
 	| "widgets:media:played.send"
+	| "widgets:media:play.send"
 	| "widgets:media:end.send"
 	| "widgets:media:playing.send"
 	| "widgets:media:paused.send"
@@ -449,7 +451,8 @@ export type WidgetMutation =
 	| "widgets:tts:replay.send"
 	| "widgets:tts:skip.send"
 	| "widgets:view:storage.write"
-	| "widgets:control:storage.write";
+	| "widgets:control:storage.write"
+	| "widgets:media:skip.send";
 
 export type WidgetSubscription =
 	| "widgets:messages.subscription"
@@ -465,6 +468,7 @@ export type WidgetSubscription =
 	| "widgets:alert:skip.subscription"
 	| "widgets:alert:skip-playing.subscription"
 	| "widgets:alert:played.subscription"
+	| "widgets:alert:playing.subscription"
 	| "widgets:alert:update.subscription"
 	| "widgets:media:replay.subscription"
 	| "widgets:media:settings.subscription"
@@ -474,6 +478,8 @@ export type WidgetSubscription =
 	| "widgets:media:error.subscription"
 	| "widgets:media:pause.subscription"
 	| "widgets:media:play.subscription"
+	| "widgets:media:playing.subscription"
+	| "widgets:media:played.subscription"
 	| "widgets:view:storage.subscription"
 	| "widgets:control:storage.subscription"
 	| "widgets:donation.subscription"
@@ -488,6 +494,7 @@ export type WidgetSubscription =
 	| "widgets:tts:skip.subscription"
 	| "widgets:tts:skip-playing.subscription"
 	| "widgets:tts:played.subscription"
+	| "widgets:tts:playing.subscription"
 	| "widgets:channel-user-banned.subscription"
 	| "widgets:channel-subscription.subscription"
 	| "widgets:command-auction-action.subscription";
@@ -498,6 +505,7 @@ export interface IWidgetRequest<T = unknown> {
 	id: string;
 	scope: WidgetScopes;
 	arg?: T;
+	unsubscribe?: boolean;
 }
 export interface IWidgetResponse<T = unknown> {
 	id: string;
@@ -1278,4 +1286,38 @@ export interface IObsSourceFilter {
 	filterKind: string;
 	filterName: string;
 	filterSettings: unknown;
+}
+
+export type TranslateFn = (
+	key: string,
+	options?: Record<string, unknown>,
+) => string;
+
+export interface IWidgetTransport {
+	action<A, R = unknown>(
+		scope: WidgetQuery | WidgetMutation,
+		arg?: A,
+	): Promise<R>;
+	subscribe<T>(
+		scope: WidgetSubscription,
+		onMessage: (message: T) => void,
+	): () => void;
+}
+
+export interface IModerator {
+	id: string;
+	name: string;
+}
+
+export interface IModeratorLogs {
+	id: string;
+	moderator_id: string;
+	event_type: AppEvent;
+	created_at: number;
+}
+
+export interface IToken {
+	id: number;
+	type: TokenType;
+	token: string;
 }
