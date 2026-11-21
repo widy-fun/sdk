@@ -1288,11 +1288,6 @@ export interface IObsSourceFilter {
 	filterSettings: unknown;
 }
 
-export type TranslateFn = (
-	key: string,
-	options?: Record<string, unknown>,
-) => string;
-
 export interface IWidgetTransport {
 	action<A, R = unknown>(
 		scope: WidgetQuery | WidgetMutation,

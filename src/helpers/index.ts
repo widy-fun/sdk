@@ -1,3 +1,4 @@
+export { default as formatTime } from "./formatTime";
 export { default as getAlertFromMessage } from "./getAlertFromMessage";
 export { default as getColorByMediaType } from "./getColorByMediaType";
 export { default as getColorByMessageType } from "./getColorByMessageType";
