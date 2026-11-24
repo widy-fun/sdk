@@ -419,7 +419,9 @@ export interface IFishAudioExtra {
 	model: FishAudioTtsModel;
 }
 
-export type WidgetQuery =
+export type WidgetQuery = WidgetRead;
+
+export type WidgetRead =
 	| "widgets:messages.read"
 	| "widgets:goals.read"
 	| "widgets:auc-fighter:settings.read"
@@ -430,7 +432,9 @@ export type WidgetQuery =
 	| "widgets:media:settings.read"
 	| "widgets:donations.read";
 
-export type WidgetMutation =
+export type WidgetMutation = WidgetSend & WidgetWrite;
+
+export type WidgetSend =
 	| "widgets:auc-fighter:match-playing.send"
 	| "widgets:auc-fighter:match-winner.send"
 	| "widgets:auc-fighter:match-paused.send"
@@ -450,9 +454,11 @@ export type WidgetMutation =
 	| "widgets:tts:playing.send"
 	| "widgets:tts:replay.send"
 	| "widgets:tts:skip.send"
-	| "widgets:view:storage.write"
-	| "widgets:control:storage.write"
 	| "widgets:media:skip.send";
+
+export type WidgetWrite =
+	| "widgets:view:storage.write"
+	| "widgets:control:storage.write";
 
 export type WidgetSubscription =
 	| "widgets:messages.subscription"
