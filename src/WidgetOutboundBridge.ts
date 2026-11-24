@@ -1,4 +1,5 @@
 import type {
+	IWidgetRequest,
 	IWidgetResponse,
 	IWidgetTransport,
 	WidgetMutation,
@@ -9,46 +10,65 @@ import type {
 export default class WidgetOutboundBridge implements IWidgetTransport {
 	private readonly pendingRequests = new Map();
 	private readonly subscriptionHandlers = new Map();
+	private destroyed = false;
 
 	constructor(private timeout = 5000) {
 		window.addEventListener("message", this.handleMessage);
 	}
 
 	private handleMessage = (event: MessageEvent<IWidgetResponse>): void => {
-		const { id, data, error } = event.data;
+		const { id, data, error } = event.data ?? ({} as IWidgetResponse);
 
-		if (this.subscriptionHandlers.has(id)) {
-			this.subscriptionHandlers.get(id)?.(data);
+		const handler = this.subscriptionHandlers.get(id);
+		if (handler) {
+			handler(data);
 			return;
 		}
 
-		if (!this.pendingRequests.has(id)) return;
+		const pending = this.pendingRequests.get(id);
+		if (!pending) return;
 
-		const { resolve, reject } = this.pendingRequests.get(id);
+		clearTimeout(pending.timer);
 		this.pendingRequests.delete(id);
 
 		if (error) {
-			reject(error);
+			pending.reject(error);
 		} else {
-			resolve(data);
+			pending.resolve(data);
 		}
 	};
+
+	private send(request: IWidgetRequest): void {
+		window.parent.postMessage(request, "*");
+	}
 
 	action<A, R = unknown>(
 		scope: WidgetQuery | WidgetMutation,
 		arg?: A,
 	): Promise<R> {
-		return new Promise((resolve, reject) => {
-			const id = crypto.randomUUID();
-			this.pendingRequests.set(id, { resolve, reject });
-			window.parent.postMessage({ id, scope, arg }, "*");
+		return new Promise<R>((resolve, reject) => {
+			if (this.destroyed) {
+				reject(new Error("Bridge destroyed"));
+				return;
+			}
 
-			setTimeout(() => {
-				if (this.pendingRequests.has(id)) {
-					this.pendingRequests.delete(id);
+			const id = crypto.randomUUID();
+
+			const timer = setTimeout(() => {
+				if (this.pendingRequests.delete(id)) {
 					reject(new Error(`Parent request "${scope}" timed out`));
 				}
 			}, this.timeout);
+
+			this.pendingRequests.set(id, { resolve, reject, timer });
+
+			try {
+				this.send({ id, scope, arg });
+			} catch (err) {
+				clearTimeout(timer);
+				this.pendingRequests.delete(id);
+				reject(err);
+			}
 		});
 	}
 
@@ -56,18 +76,37 @@ export default class WidgetOutboundBridge implements IWidgetTransport {
 		scope: WidgetSubscription,
 		onMessage: (message: T) => void,
 	): () => void {
+		if (this.destroyed) return () => undefined;
+
 		const id = crypto.randomUUID();
 		this.subscriptionHandlers.set(id, onMessage);
-		window.parent.postMessage({ id, scope }, "*");
+
+		try {
+			this.send({ id, scope });
+		} catch {
+			this.subscriptionHandlers.delete(id);
+		}
 
 		return () => {
-			this.subscriptionHandlers.delete(id);
+			if (!this.subscriptionHandlers.delete(id)) return;
+			if (this.destroyed) return;
+			try {
+				this.send({ id, scope, unsubscribe: true });
+			} catch {
+				// ignore: parent is already gone
+			}
 		};
 	}
 
 	destroy(): void {
-		this.subscriptionHandlers.clear();
-		this.pendingRequests.clear();
+		if (this.destroyed) return;
+		this.destroyed = true;
 		window.removeEventListener("message", this.handleMessage);
+		this.subscriptionHandlers.clear();
+		for (const pending of this.pendingRequests.values()) {
+			clearTimeout(pending.timer);
+			pending.reject(new Error("Bridge destroyed"));
+		}
+		this.pendingRequests.clear();
 	}
 }
