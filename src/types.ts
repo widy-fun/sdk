@@ -436,7 +436,7 @@ export type WidgetMutation = WidgetSend & WidgetWrite;
 
 export type WidgetSend =
 	| "widgets:auc-fighter:match-playing.send"
-	| "widgets:auc-fighter:match-winner.send"
+	| "widgets:auc-fighter:match-end.send"
 	| "widgets:auc-fighter:match-paused.send"
 	| "widgets:media:played.send"
 	| "widgets:media:play.send"
