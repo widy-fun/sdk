@@ -432,7 +432,7 @@ export type WidgetRead =
 	| "widgets:media:settings.read"
 	| "widgets:donations.read";
 
-export type WidgetMutation = WidgetSend & WidgetWrite;
+export type WidgetMutation = WidgetSend | WidgetWrite;
 
 export type WidgetSend =
 	| "widgets:auc-fighter:match-playing.send"
