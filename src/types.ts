@@ -438,7 +438,6 @@ export type WidgetSend =
 	| "widgets:auc-fighter:match-playing.send"
 	| "widgets:auc-fighter:match-winner.send"
 	| "widgets:auc-fighter:match-paused.send"
-	| "widgets:auc-fighter:match-id.send"
 	| "widgets:media:played.send"
 	| "widgets:media:play.send"
 	| "widgets:media:end.send"
