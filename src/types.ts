@@ -15,6 +15,7 @@ import type {
 	GoalType,
 	KickActionType,
 	KickSourceType,
+	Language,
 	MediaType,
 	MessageType,
 	NsfwLabel,
@@ -177,9 +178,10 @@ export interface ISettings {
 	alert_paused: boolean;
 	remove_links: boolean;
 	black_list: string;
-	language: string;
+	language: Language;
 	currency: Currency;
 	widget_token: string;
+	check_update: boolean;
 }
 
 export interface IAuctionSettings {
@@ -1321,3 +1323,15 @@ export interface IToken {
 	type: TokenType;
 	token: string;
 }
+
+export type ChangeSection = "added" | "changed" | "fixed" | "removed";
+
+export type ChangeSet = Partial<Record<ChangeSection, string[]>>;
+
+export interface ChangelogEntry {
+	changes: {
+		en: ChangeSet;
+	} & Partial<Record<Exclude<Language, "en">, ChangeSet>>;
+}
+
+export type Changelog = Record<string, ChangelogEntry>;
