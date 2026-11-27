@@ -233,10 +233,26 @@ export enum AlertVariant {
 
 export enum TextAnimation {
 	No = "No",
+	Bounce = "Bounce",
+	Pulse = "Pulse",
+	Shake = "Shake",
+	Swing = "Swing",
+	Wiggle = "Wiggle",
+	Float = "Float",
+	Jelly = "Jelly",
+	Flip = "Flip",
+	Spin = "Spin",
+	Blink = "Blink",
+	Glow = "Glow",
+	Rainbow = "Rainbow",
+	Heartbeat = "Heartbeat",
+	Tada = "Tada",
 }
 
 export enum TextAnimationVariant {
 	AllText = "AllText",
+	LetterByLetterSameTime = "LetterByLetterSameTime",
+	LetterByLetterInTurn = "LetterByLetterInTurn",
 }
 
 export enum CommandSourceType {
